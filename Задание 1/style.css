@@ -1,0 +1,23 @@
+.container{
+    display: block;
+    margin: 0 25% 0 25%;
+}
+
+.postTitle {
+    font-size: 30px;
+    text-align: center;
+}
+
+.postText {
+    font-size: 18px;
+}
+
+.commentSection {
+    border: 1px;
+    display: block;
+}
+
+.commentSection .comment {
+    margin-left: 25px;
+    font-size: 18px;
+}
