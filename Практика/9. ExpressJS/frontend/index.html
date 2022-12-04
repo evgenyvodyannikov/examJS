@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <button onclick="sendRequest()">Выполнить запрос</button>
-        <script src="./script.js"></script>
-    </body>
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div>
+        <button onclick="getPosts()">Получить статьи</button>
+        <div style="display: flex;">
+            <input type="text" id="title" />
+            <input type="text" id="text" />
+        </div>
+        <button onclick="addPost()">Добавить статью</button>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
 </html>
