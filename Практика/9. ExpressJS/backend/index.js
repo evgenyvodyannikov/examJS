@@ -1,10 +1,11 @@
-// Импортируем пакет cors
+// Импортируем необходимые пакеты
 import cors from 'cors';
-
-// Импортируем пакет express 
 import express from 'express';
-
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+
+// Импортируем модель
+import postModel from './models/post.js'
 
 // Создаём приложение
 const app = express();
@@ -15,7 +16,14 @@ const port = 4444;
 app.use(cors());
 // Используем пакет bodyParser (без него нельзя будет получить body в запросе)
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+
+
+mongoose.set('strictQuery', true);
+mongoose
+  .connect("mongodb+srv://student_rez:ARSGJYZj8Sbekcbk@cluster0.rbt9re3.mongodb.net/?retryWrites=true&w=majority")
+  .then(() => console.log("База данных подключена"))
+  .catch((err) => console.log("Ошибка подключения:", err));
 
 // Отслеживаем get запрос на сервер
 app.get('/', (req, res) => {
@@ -34,22 +42,26 @@ app.get('/users', (req, res) => {
 
 });
 
-let posts = [];
-
 // Отслеживаем post запрос на сервер
-app.post('/posts', (req, res) => {
+app.post('/posts', async (req, res) => {
 
   // Если данные не отправлены возращаем код 400
   if (!req.body) return res.sendStatus(400);
 
   try {
+    // создаем новый документ
+    let newDoc = new postModel({
+      title: req.body.title,
+      text: req.body.text,
+      description: req.body.description,
+    });
 
-    // Парсим данные в JSON
-    let post = req.body;
-    // Добавляем в массив
-    posts.push(post);
-    // Отправляем добавленный пост в качестве ответа
-    res.send(post); // (не будет ответа от сервера если не написать)
+    // сохраняем документ в БД, та в свою очередь
+    // вернет нам созданный объект (включая его id)
+    let newPost = await newDoc.save();
+  
+    // Отправляем созданные пост в качестве ответа
+    res.json(newPost); // (не будет ответа от сервера если не написать)
   }
   catch {
     // В случае ошибки отправляем код 500
@@ -59,8 +71,9 @@ app.post('/posts', (req, res) => {
 });
 
 // Отслеживаем get запрос на сервер
-app.get('/posts', (req, res) => {
+app.get('/posts', async (req, res) => {
 
+  let posts = await postModel.find();
   // Определяем тело ответа 
   res.json(posts);
 
