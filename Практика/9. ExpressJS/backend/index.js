@@ -73,7 +73,19 @@ app.post('/posts', async (req, res) => {
 // Отслеживаем get запрос на сервер
 app.get('/posts', async (req, res) => {
 
-  let posts = await postModel.find();
+  let posts = [];
+  // если лимит определен
+  if(req.body.limit){
+    // получаем лимит на выбор записей из БД
+    limit = req.body.limit;
+    // получаем определенное кол-во записей
+    posts = await postModel.find({}, null, {limit: limit});
+  }
+  else{
+    // иначе получаем все
+    posts = await postModel.find();
+  }
+  
   // Определяем тело ответа 
   res.json(posts);
 
