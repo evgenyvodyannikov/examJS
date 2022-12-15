@@ -14,6 +14,7 @@ const addPost = () => {
         body: JSON.stringify({
             title: title,
             text: text,
+            description: 'admin'
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',

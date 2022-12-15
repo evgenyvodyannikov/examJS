@@ -54,6 +54,7 @@ app.post('/posts', async (req, res) => {
       title: req.body.title,
       text: req.body.text,
       description: req.body.description,
+      author: 'Admin'
     });
 
     // сохраняем документ в БД, та в свою очередь
