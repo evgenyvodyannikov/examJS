@@ -40,13 +40,13 @@
 3. Пусть дан массив вида:
 
 <p align="center">
-  <img src="./readme/task3.png">
+  <img src="https://user-images.githubusercontent.com/66135471/208758876-961013c7-0f3b-4509-a657-c7c1bb825dff.png">
 </p>
 
 Создать функцию, которая принимает в качестве агрумента – массив, сортирует элементы и создает новые массивы для каждого типа данных находящихся в исходном массиве (исключая нули, null, undefined и boolean – их поместить в отдельный массив для мусора). Вывести все получившиеся массивы в консоль.
 
 <p align="center">
-  <img src="./readme/task3_2.png">
+  <img src="https://user-images.githubusercontent.com/66135471/208758885-1e6609f3-c991-4afa-84df-ef28e68551b8.png">
 </p>
 
 ---
@@ -73,7 +73,7 @@
 7. Напишите функцию, которая создает на странице таблицу умножения.
 
 <p align="center">
-  <img src="./readme/task7.png">
+  <img src="https://user-images.githubusercontent.com/66135471/208758891-32d70aad-eb1a-40f8-bffa-3d91d643ef7b.png">
 </p>
 
 ---
