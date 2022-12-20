@@ -1,11 +1,23 @@
 
-const getVowels = (str) => {
-    var m = str.match(/[aeiou]/gi);
-    return m === null ? 0 : m.length;
+const getVowelsConsonants = (str) => {
+  // получаем все буквы в строке (массив)
+  let words = str.match(/\w/gi);
+  // объединяем массив в строку и ищем гласные (массив)
+  let vowels = words.join('').match(/[aeiou]/gi);
+  // получаем кол-во гласных
+  vowels = vowels === null ? 0 : vowels.length;
+  // получаем кол-во согласных
+  let consonants = words.length - vowels;
+  // возвращаем объект содержащий кол-во гласных и согласных
+  return {
+    vowels: vowels,
+    consonants: consonants,
   }
+}
 
-  let str = 'the world is gonna roll me'
-  let vowels = getVowels(str);
-  let consonants = str.length - vowels;
-
-  console.log(`Строка имеет ${vowels} гласных и ${consonants} согласных`);
+// определяем тестовую строку
+let str = 'the world is gonna roll me'
+// вызываем функцию
+let statistic = getVowelsConsonants(str);
+// выводим
+console.log(`Строка имеет ${statistic.vowels} гласных и ${statistic.consonants} согласных`);

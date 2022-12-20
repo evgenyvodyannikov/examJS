@@ -24,7 +24,7 @@ const getTypesFromArray = (array) => {
         }
     });
     
-    console.log(numbers.sort());
+    console.log(numbers.sort((a, b) => a - b));
     console.log(strings.sort());
     console.log(objects.sort());
     console.log(others.sort());
