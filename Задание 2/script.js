@@ -1,65 +1,34 @@
-var data = '';
-
 const fetchData = async () => {
-    await fetch('https://jsonplaceholder.typicode.com/users')
+
+    let todos = [];
+
+    await fetch('https://jsonplaceholder.typicode.com/todos')
     .then(response => response.json())
-    .then(json => (data = json));
+    .then(json => (todos = json));
 
-    console.log(data);
-    showUsers(); 
+
+    console.log(todos);
+    showTodos(todos);
 }
 
-const showUsers = () => {
-    const userList = document.getElementById('userList');
+const showTodos = (todos) => {
 
-    for(let i = 0; i <= data.length; i++){
-        let user = document.createElement('div');
-        user.id = `user${data[i].id}`;
-        user.className = 'user';
-        user.innerHTML = `<h1>${data[i].name}</h1>`;
-        userList.append(user);
-   }
-}
+    let container = document.getElementById('container');
 
-const search = () => {
-    let searchText = document.getElementById('searchInput').value;
-    if(searchText.length > 0){
+    for(let i = 0; i < 25; i++){
 
-        hideElements();
-        for(let i = 0; i <= data.length; i++){
-            if(data[i].name.toLowerCase().indexOf(searchText) >= 0) {
-                showElement(data[i].id);
-            }
-        }
-    }
-    else{
-       showElements();
-    }
-}
-
-const showElement = (id) => {
-
-    let elemToHide = document.getElementById(`user${id}`);
-    console.log(`user${id}`);
-    if(elemToHide){
-        elemToHide.style.visibility = 'visible';
-    }
-}
-
-const showElements = () => {
-    for(let i = 0; i <= data.length; i++){
-        let elemToShow = document.getElementById(`user${i}`);
-        if(elemToShow){
-            elemToShow.style.visibility = 'visible';
-        }
-    }
-}
-
-const hideElements = () => {
-    for(let i = 0; i <= data.length; i++){
-        let elemToHide = document.getElementById(`user${i}`);
-        if(elemToHide){
-            elemToHide.style.visibility = 'hidden';
-        }
+        let newTodo = document.createElement('div');
+        newTodo.className = 'todo';
+        
+        let newTodoTitle = todos[i].title;
+        let newTodoCompleteText = todos[i].completed ? 'Completed' : 'In process';
+        
+        newTodo.innerHTML = `
+            <div class="todo__body">
+            <p class="tag ${todos[i].completed ? 'tag-blue' : 'tag-red'}">Task ${i+1}: ${newTodoCompleteText}</p>
+            <p>${todos[i].title}</p>
+            </div>
+        `
+        container.appendChild(newTodo);
     }
 }
