@@ -21,7 +21,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 1200px;
+  max-width: 1600px;
   margin-block: 2rem;
   gap: 2rem;
 }
@@ -105,4 +105,23 @@ background: linear-gradient(to bottom, #ef473a, #cb2d3e);
 
 .user__info > small {
   color: #666;
+}
+
+.commentSection h1{
+  font-size: 18px;
+}
+
+.commentSection{
+  font-size: 18px;
+  display: grid;
+  grid-template: repeat(1, 1fr) / repeat(1, 1fr);
+  gap: 15px 5px;
+}
+
+.comment {
+  margin-left: 25px;
+}
+
+.comment h1{
+  font-size: 15px;
 }

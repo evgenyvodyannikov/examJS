@@ -6,9 +6,15 @@ const fetchData = async () => {
     await fetch('https://jsonplaceholder.typicode.com/posts/54')
     .then(response => response.json())
     .then(json => (post = json));
-    console.log(post)
     showPost(post);
-    //showComments();
+
+    let comments = [];
+
+    await fetch('https://jsonplaceholder.typicode.com/posts/54/comments')
+    .then(response => response.json())
+    .then(json => (comments = json));
+    showComments(comments);
+
 }   
 
 const showPost = (post) => {
@@ -23,14 +29,15 @@ const showPost = (post) => {
 }
 
 
-const showComments = () => {
-   
+const showComments = (comments) => {
+
     const commentSection = document.getElementById('commentSection');
 
-    for(let i = 0; i < 25; i++){
-        let comment = document.createElement('div');
-        comment.className = 'comment';
-        comment.innerHTML = `<h1> Comment № ${i+1}</h1><p>${data[i].body}</p>`;
-        commentSection.append(comment);
+    for(let i = 0; i < comments.length; i++){
+        let newElement = document.createElement('div');
+        newElement.className = 'comment';
+        newElement.innerHTML = `<h1>${comments[i].name}</h1><p>${comments[i].body}</p>`;
+        commentSection.append(newElement);
+        console.log(comments[i]);
    } 
 }
